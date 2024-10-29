@@ -117,6 +117,32 @@ class LoginScreen: UIView {
         line.backgroundColor = .white
         return line
     }()
+    
+    lazy var signMetamaskView: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.clipsToBounds = true
+        view.layer.cornerRadius = 8
+        view.layer.borderColor = UIColor(red: 207/255, green: 0/255, blue: 192/255, alpha: 1.0).cgColor
+        view.layer.borderWidth = 2
+        return view
+    }()
+    
+    lazy var signMetamaskImageView: UIImageView = {
+        let image = UIImageView()
+        image.translatesAutoresizingMaskIntoConstraints = false
+        image.image = UIImage(named: "logo")
+        return image
+    }()
+    
+    lazy var singMetamaskLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.textColor = .white
+        label.font = UIFont.boldSystemFont(ofSize: 14)
+        label.text = "Entrar com Metamask"
+        return label
+    }()
         
         
     override init(frame: CGRect) {
@@ -131,6 +157,9 @@ class LoginScreen: UIView {
         self.addSubview(self.subLoginView)
         self.addSubview(self.loginButton)
         self.addSubview(self.lineView)
+        self.addSubview(self.signMetamaskView)
+        self.signMetamaskView.addSubview(self.signMetamaskImageView)
+        self.signMetamaskView.addSubview(self.singMetamaskLabel)
         self.configConstraints()
     }
     
@@ -185,7 +214,20 @@ class LoginScreen: UIView {
             self.lineView.topAnchor.constraint(equalTo: self.subLoginView.bottomAnchor, constant: 48),
             self.lineView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 64),
             self.lineView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -64),
-            self.lineView.heightAnchor.constraint(equalToConstant: 0.5)
+            self.lineView.heightAnchor.constraint(equalToConstant: 0.5),
+            
+            self.signMetamaskView.topAnchor.constraint(equalTo: self.lineView.bottomAnchor, constant: 48),
+            self.signMetamaskView.leadingAnchor.constraint(equalTo: self.loginButton.leadingAnchor),
+            self.signMetamaskView.trailingAnchor.constraint(equalTo: self.loginButton.trailingAnchor),
+            self.signMetamaskView.heightAnchor.constraint(equalToConstant: 41),
+            
+            self.signMetamaskImageView.leadingAnchor.constraint(equalTo: self.signMetamaskView.leadingAnchor, constant: 53),
+            self.signMetamaskImageView.centerYAnchor.constraint(equalTo: self.signMetamaskView.centerYAnchor),
+            self.signMetamaskImageView.heightAnchor.constraint(equalToConstant: 20),
+            self.signMetamaskImageView.widthAnchor.constraint(equalToConstant: 20),
+            
+            self.singMetamaskLabel.leadingAnchor.constraint(equalTo: self.signMetamaskImageView.trailingAnchor, constant: 30),
+            self.singMetamaskLabel.centerYAnchor.constraint(equalTo: self.signMetamaskView.centerYAnchor)
             
         ])
     }
